@@ -1,0 +1,23 @@
+{
+  "name": "printerpos",
+  "version": "1.0.0",
+  "description": "servicio de impresión en node js y esc pos en impresora termica",
+  "main": "printerPOS.js",
+  "scripts": {
+    "test": "echo \"Error: No hay un test especifico\" && exit 1"
+  },
+  "keywords": [
+    "impresora",
+    "termica",
+    "epson",
+    "nodejs"
+  ],
+  "author": "Yovany Suárez Silva",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "escpos": "^2.4.11",
+    "express": "^4.16.4",
+    "method-override": "^3.0.0"
+  }
+}
