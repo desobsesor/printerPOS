@@ -1,6 +1,6 @@
 # printerPOS
 Impresión de factura y cierre de caja (NodeJS and EscPos)
-printerpos.cds.net.co
+* [printerpos.cds.net.co](http://cds.net.co)
 ============
 _App para servicio de impresion de facturas y cierres de caja en scip_
 Aplicación NodeJS-EscPos
@@ -18,28 +18,28 @@ Ejecutar en consola "node printerPOS.js"
 ### Pre-requisitos 📋
 
 _Node.js_
-
 ```
-Da un ejemplo
+node printerPOS.js
+```
+_https://github.com/Rob--W/cors-anywhere/_
+```
+$http.get('http://192.168.X.XX:8080/http://192.168.X.X:4000/imprimirFactura', {
 ```
 
 ### Instalación 🔧
 
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
+_Para usar este proyecto continue con los siguientes pasos_
 
 _Dí cómo será ese paso_
-
 ```
 Da un ejemplo
 ```
-
 _Y repite_
-
 ```
 hasta finalizar
 ```
-
 _Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
+
 
 ## Ejecutando las pruebas ⚙️
 
@@ -70,8 +70,8 @@ _Abre el proyecto con visual estudio code y ejecuta f5 para configurar arranque 
 _Herramientas y Tecnologias utilizadas
 
 * [Nodejs](https://nodejs.org/es//) - Entorno JavaScript de lado de servidor, utiliza un modelo asíncrono y dirigido por eventos.
-* [MongoDB](https://www.npmjs.com/) - Manejador de dependencias
-* [EscPos](https://www.npmjs.com/package/escpos) - Libreria para impresion en termicas
+* [NPM](https://www.npmjs.com/) - Manejador de dependencias
+* [EscPos](https://www.npmjs.com/package/escpos) - Libreria para impresión en termicas
 
 ## Contribuyendo 🖇️
 
@@ -85,7 +85,7 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 
 _Personal encargado_
 
-* **Yovany Suárez Silva** - *Desarrollador FullStack* - [desobsesor](https://github.com/desobsesor)
+* **Yovany Suárez Silva** - *Desarrollador FullStack Java, C# y Javascript* - [desobsesor](https://github.com/desobsesor)
 
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
