@@ -1,8 +1,8 @@
 # printerPOS
 Impresión de factura y cierre de caja (NodeJS and EscPos)
-_App para servicio de impresion de facturas y cierres de caja en scip_
 printerpos.cds.net.co
 ============
+_App para servicio de impresion de facturas y cierres de caja en scip_
 Aplicación NodeJS-EscPos
 
 
