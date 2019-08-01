@@ -18,7 +18,7 @@ router.get('/estadoDelServicio', function (req, res) {
   console.log("Servicio inicializado ...");
 });
 //#endregion
-//#region IMPRESION DE FACTURA
+//#region IMPRESIÓN DE FACTURA
 router.get('/imprimirFactura', function (req, res) {
   
   const options = { encoding: "CP860"  }
@@ -144,7 +144,7 @@ router.get('/imprimirFactura', function (req, res) {
   res.send("Impresión de factura realizada con exito!");
 });
 //#endregion
-//#region IMPRESION DE CIERRE DE CAJA
+//#region IMPRESIÓN DE CIERRE DE CAJA
 router.get('/cerrarCaja', function (req, res) {
 
   const options = { encoding: "CP860" }
@@ -255,7 +255,7 @@ router.get('/cerrarCaja', function (req, res) {
   res.send("Impresion Realizada con exito!");
 });
 //#endregion
-//#region REGION Y FECHA
+//#region REGIÓN Y FECHA
 Date.prototype.toDateInputValue = (function () {
   var local = new Date(this);
   local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
