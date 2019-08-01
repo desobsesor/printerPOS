@@ -1,7 +1,8 @@
 # printerPOS
 Impresión de factura y cierre de caja (NodeJS and EscPos)
-* [printerpos.cds.net.co](http://cds.net.co)
 ============
+* [printerpos.cds.net.co](http://cds.net.co)
+
 _App para servicio de impresion de facturas y cierres de caja en scip_
 Aplicación NodeJS-EscPos
 
@@ -23,23 +24,69 @@ node printerPOS.js
 ```
 _https://github.com/Rob--W/cors-anywhere/_
 ```
-$http.get('http://192.168.X.XX:8080/http://192.168.X.X:4000/imprimirFactura', {
+//pasando por el servicio Cors con la url para ser detectado de confianza
+http://localhost:8080/http://localhost:4000/imprimirFactura
+```
+_Llamado desde el metodo de "imprimir factura" desde SCIP pasando parametros al app de servicio de impresion_
+```
+        var arrayDetalles = [];
+        for(var i=0; i < $scope.facturaDetalles.length; i++){
+            var objectA={
+                producto : $scope.facturaDetalles[i].itemMedicamento.nombreGenerico,
+                cantidad: $scope.facturaDetalles[i].cantidad,
+                total: $scope.facturaDetalles[i].total,
+                precioUnitario: $scope.facturaDetalles[i].precioUnitario,
+            };
+            arrayDetalles.push(objectA);
+        }
+
+        $scope.objectPrinterFactura = {
+            detalles:   arrayDetalles,
+            factura:    {
+                id:         factura.id,
+                subtotal:   factura.subtotal,
+                impuestosTotal: factura.impuestos.total==undefined?0:factura.impuestos.total,
+                descuentosTotal:    factura.descuentos.total==undefined?0:factura.descuentos.total,
+                total:  factura.total,
+                efectivo:   factura.efectivo,
+                cambio: factura.cambio,
+                cliente:    $scope.newItemCliente.persona.nombres.primerNombre,
+                vendedor:   $scope.vendedor,
+                direccion:    $scope.empresaActual.direccion,
+                contacto:    $scope.empresaActual.contacto,
+                nitEmpresa: $scope.empresaActual.nit
+            }
+        };
+
+        $http.get('http://localhost:8080/http://localhost:4000/imprimirFactura', {
+            params: {
+                detalles:   $scope.objectPrinterFactura.detalles,
+                factura:    $scope.objectPrinterFactura.factura
+            },
+            headers: {
+                ....
 ```
 
 ### Instalación 🔧
 
 _Para usar este proyecto continue con los siguientes pasos_
 
-_Dí cómo será ese paso_
+_Genere un clon del proyecto o descargue una version en formato .zip_
 ```
-Da un ejemplo
+git clone https://github.com/desobsesor/printerPOS.git
 ```
-_Y repite_
+_Asegurese de construir nuevamente los modulos necesarios_
 ```
-hasta finalizar
+npm install
 ```
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
+_Descomprima y arranque desde consola ubicandose en la raiz de la carpeta_
+```
+node printerPOS.js
+```
+_Asegurese que el servicio este inicializado_
+```
+http://localhost:4000/estadoDelServicio
+```
 
 ## Ejecutando las pruebas ⚙️
 
