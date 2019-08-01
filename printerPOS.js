@@ -99,7 +99,7 @@ router.get('/imprimirFactura', function (req, res) {
   direccion = factura.direccion;
   contacto = factura.contacto;
 
-  const content = './assets/logocds.png';
+  const content = './recursos/logocds.png';
   escpos.Image.load(content, function (image) {
     device.open(function () {
       printer
@@ -215,7 +215,7 @@ router.get('/cerrarCaja', function (req, res) {
   direccion = empresa.direccion;
   contacto = empresa.contacto;
 
-  const content = './assets/logocds.png';
+  const content = './recursos/logocds.png';
   escpos.Image.load(content, function (image) {
     device.open(function () {
       printer
