@@ -20,7 +20,7 @@ router.get('/estadoDelServicio', function (req, res) {
 //#endregion
 //#region IMPRESIÓN DE FACTURA
 router.get('/imprimirFactura', function (req, res) {
-  
+
   const options = { encoding: "CP860"  }
   const device = new escpos.USB(0x04B8, 0x0E15);
   const printer = new escpos.Printer(device, options);
@@ -42,7 +42,7 @@ router.get('/imprimirFactura', function (req, res) {
   console.log("detallesFactura.length :",detallesFactura.length );
   if (detallesFactura.length > 20) {
     let o = JSON.parse(detallesFactura);
-    cmds += ('Producto: ' + o.itemMedicamento);
+    cmds += ('Producto: ' + o.producto);
     cmds += newLine;
     cmds += ('Cantidad: ' + o.cantidad);
     cmds += newLine;
@@ -55,7 +55,7 @@ router.get('/imprimirFactura', function (req, res) {
     for (var i = 0; i < detallesFactura.length; i++) {
       var obj = detallesFactura[i];
       var o = JSON.parse(obj);
-      cmds += ('Producto: ' + o.itemMedicamento);
+      cmds += ('Producto: ' + o.producto);
       cmds += newLine;
       cmds += ('Cantidad: ' + o.cantidad);
       cmds += newLine;
@@ -129,7 +129,7 @@ router.get('/imprimirFactura', function (req, res) {
         .align('ct')
         .style('bu')
         .size(1, 1)
-        .text('Cliente: ' + factura.cliente)
+        .text('Cliente: ' + (factura.cliente==undefined ? 'POS' :factura.cliente))
         .font('a')
         .align('ct')
         .style('bu')
@@ -161,20 +161,20 @@ router.get('/cerrarCaja', function (req, res) {
   var newLine = '\x0A'; //LF byte in hex notation
   var cmds = esc + "@"; //Initializes the printer (ESC @)
   cmds += esc + '!' + '\x38'; //Emphasized + Double-height + Double-width mode selected (ESC ! (8 + 16 + 32)) 56 dec => 38 hex
-  cmds += esc + '!' + '\x00'; 
+  cmds += esc + '!' + '\x00';
   //cmds += '-----------------------------------------------';
   cmds += newLine;
   cmds += esc + '!' + '\x18';
   cmds += 'MONTO INICIAL                         $' + formatMyNumber(cajaControl.montoInicial);
-  cmds += esc + '!' + '\x00'; 
+  cmds += esc + '!' + '\x00';
   cmds += newLine;
   cmds += esc + '!' + '\x18';
-  cmds += 'MONTO FINAL                           $' + formatMyNumber(cajaControl.montoFinal); 
-  cmds += esc + '!' + '\x00'; 
+  cmds += 'MONTO FINAL                           $' + formatMyNumber(cajaControl.montoFinal);
+  cmds += esc + '!' + '\x00';
   cmds += newLine;
   cmds += esc + '!' + '\x18';
   cmds += 'TOTAL VENTA                           $' + formatMyNumber(parseInt(cajaControl.montoFinal)-parseInt(cajaControl.montoInicial));
-  cmds += esc + '!' + '\x00'; 
+  cmds += esc + '!' + '\x00';
   cmds += newLine;
   cmds += '------------------------------------------------';
   cmds += newLine;
@@ -182,13 +182,13 @@ router.get('/cerrarCaja', function (req, res) {
   cmds += newLine;
   cmds += (cajaControl.personaAbre.nombres.primerNombre+" "+cajaControl.personaAbre.nombres.segundoNombre+" "+ cajaControl.personaAbre.apellidos.primerApellido+" "+cajaControl.personaAbre.apellidos.segundoApellido);
   cmds += newLine;
-  
+
   var ac =  new Date(cajaControl.fechaApertura).toLocaleString();
   cmds += 'FECHA APERTURA - ' + ac;
   cmds += newLine;
   cmds += 'NOVEDAD APERTURA                       ';
   cmds += newLine;
-  cmds += cajaControl.novedadApertura;  
+  cmds += cajaControl.novedadApertura;
   cmds += newLine;
   cmds += '------------------------------------------------';
   cmds += newLine;
@@ -197,7 +197,7 @@ router.get('/cerrarCaja', function (req, res) {
   cmds += (cajaControl.personaCierra.nombres.primerNombre+" "+cajaControl.personaCierra.nombres.segundoNombre+" "+ cajaControl.personaCierra.apellidos.primerApellido+" "+cajaControl.personaCierra.apellidos.segundoApellido);
   cmds += newLine;
   var a = new Date(cajaControl.fechaCierre).toLocaleString();
-  
+
   cmds += 'FECHA CIERRE - ' + a;
   cmds += newLine;
   cmds += 'NOVEDAD CIERRE                         ';
@@ -277,7 +277,7 @@ app.listen(4000, function () {
 });
 
 formatMyNumber = function (numero) {
-  // Limit to two decimal places 
+  // Limit to two decimal places
   numero = parseFloat(numero).toFixed(1);
   //Seperates the components of the number
   var n = numero.toString().split(".");
