@@ -46,7 +46,7 @@ router.get('/imprimirFactura', function (req, res) {
     cmds += newLine;
     cmds += ('Cantidad: ' + o.cantidad);
     cmds += newLine;
-    cmds += ('Precio Unitario: ' + o.precioUnitario);
+    cmds += ('Precio Unitario: ' + formatMyNumber(o.precioUnitario));
     cmds += newLine;
     cmds += ('Valor Total: $' + formatMyNumber(o.total));
     cmds += newLine;
@@ -59,7 +59,7 @@ router.get('/imprimirFactura', function (req, res) {
       cmds += newLine;
       cmds += ('Cantidad: ' + o.cantidad);
       cmds += newLine;
-      cmds += ('Precio Unitario: ' + o.precioUnitario);
+      cmds += ('Precio Unitario: ' + formatMyNumber(o.precioUnitario));
       cmds += newLine;
       cmds += ('Valor Total: $' + formatMyNumber(o.total));
       cmds += newLine;
@@ -252,7 +252,7 @@ router.get('/cerrarCaja', function (req, res) {
         .close();
     });
   });
-  res.send("Impresion Realizada con exito!");
+  res.send("Impresión realizada con exito!");
 });
 //#endregion
 //#region REGIÓN Y FECHA
@@ -273,7 +273,7 @@ app.use(function (req, res, next) {
 });
 
 app.listen(4000, function () {
-  console.log("Server de impresión inicializado en http://localhost:4000");
+  console.log("API para servir impresiónes de factura y cierres de caja, se inicializa exitosamente en http://localhost:4000");
 });
 
 formatMyNumber = function (numero) {
