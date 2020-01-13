@@ -1,5 +1,5 @@
-# printerPOS
-Impresión de factura y cierre de caja (NodeJS and EscPos)
+# PrinterPOS
+API para servir impresión de factura y cierre de caja (NodeJS and EscPos)
 ============
 * [printerpos.cds.net.co](http://cds.net.co)
 
@@ -13,8 +13,8 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 
 Mira **Deployment** para conocer como desplegar el proyecto.
 
-Ejecutar en consola "node printerPOS.js"
-
+Ejecutar en consola "node printerPOS.js", se instala en el cliente fisico que tendra la caja.
+Para arrancar el app node se crea un servicio en el equipo del cliente a traves del App para crear servicios
 
 ### Pre-requisitos 📋
 
